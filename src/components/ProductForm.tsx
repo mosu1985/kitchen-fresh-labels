@@ -66,14 +66,14 @@ export function ProductForm({ onPrint }: ProductFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader className="bg-primary text-primary-foreground">
-        <CardTitle className="flex items-center gap-2">
-          <Package2Icon className="h-5 w-5" />
+    <Card className="w-full max-w-md card-gradient fade-in border-0">
+      <CardHeader className="btn-primary-gradient text-primary-foreground rounded-t-xl">
+        <CardTitle className="flex items-center gap-3 text-lg font-semibold">
+          <Package2Icon className="h-6 w-6" />
           Создание этикетки
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4 p-6">
+      <CardContent className="space-y-6 p-6">
         <div className="space-y-2">
           <Label htmlFor="product-name">Название продукта</Label>
           <Input
@@ -114,15 +114,24 @@ export function ProductForm({ onPrint }: ProductFormProps) {
         </div>
 
         {selectedCategory && (
-          <div className="bg-muted p-3 rounded-md space-y-1">
-            <div className="text-sm">
-              <span className="font-medium">Срок годности:</span> {getSelectedCategory()?.shelfLife} дней
+          <div className="bg-accent/50 p-4 rounded-xl border border-accent space-y-3 slide-up">
+            <div className="flex items-center gap-2 text-sm">
+              <span className="font-semibold text-primary">Срок годности:</span> 
+              <span className="px-2 py-1 bg-success/10 text-success rounded-full text-xs font-medium">
+                {getSelectedCategory()?.shelfLife} дней
+              </span>
             </div>
-            <div className="text-sm">
-              <span className="font-medium">Температура хранения:</span> {getSelectedCategory()?.temp}
+            <div className="flex items-center gap-2 text-sm">
+              <span className="font-semibold text-primary">Температура:</span> 
+              <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                {getSelectedCategory()?.temp}
+              </span>
             </div>
-            <div className="text-sm">
-              <span className="font-medium">Годен до:</span> {formatDate(calculateExpiryDate(productionDate, getSelectedCategory()?.shelfLife || 0).toISOString().split('T')[0])}
+            <div className="flex items-center gap-2 text-sm">
+              <span className="font-semibold text-primary">Годен до:</span> 
+              <span className="px-2 py-1 bg-warning/10 text-warning rounded-full text-xs font-medium">
+                {formatDate(calculateExpiryDate(productionDate, getSelectedCategory()?.shelfLife || 0).toISOString().split('T')[0])}
+              </span>
             </div>
           </div>
         )}
@@ -130,9 +139,9 @@ export function ProductForm({ onPrint }: ProductFormProps) {
         <Button 
           onClick={handlePrint} 
           disabled={!productName || !selectedCategory}
-          className="w-full"
+          className="w-full btn-primary-gradient text-white font-semibold py-3 h-12 text-base rounded-xl"
         >
-          <PrinterIcon className="mr-2 h-4 w-4" />
+          <PrinterIcon className="mr-3 h-5 w-5" />
           Печать этикетки
         </Button>
       </CardContent>

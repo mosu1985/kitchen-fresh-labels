@@ -42,26 +42,29 @@ export function RecentLabels({ labels, onReprint, onDelete }: RecentLabelsProps)
 
   const getStatusBadge = (expiryDate: Date) => {
     if (isExpired(expiryDate)) {
-      return <Badge variant="destructive">Просрочен</Badge>;
+      return <Badge className="status-expired font-medium">Просрочен</Badge>;
     }
     if (isExpiringSoon(expiryDate)) {
-      return <Badge variant="secondary" className="bg-warning text-warning-foreground">Скоро истечет</Badge>;
+      return <Badge className="status-warning font-medium">Скоро истечет</Badge>;
     }
-    return <Badge variant="secondary" className="bg-success text-success-foreground">Свежий</Badge>;
+    return <Badge className="status-fresh font-medium">Свежий</Badge>;
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader className="bg-muted">
-        <CardTitle className="flex items-center gap-2">
-          <HistoryIcon className="h-5 w-5" />
+    <Card className="w-full card-gradient fade-in border-0">
+      <CardHeader className="bg-accent/50 border-b border-accent">
+        <CardTitle className="flex items-center gap-3 text-lg font-semibold text-primary">
+          <HistoryIcon className="h-6 w-6" />
           Недавно напечатанные этикетки
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         {labels.length === 0 ? (
-          <div className="p-6 text-center text-muted-foreground">
-            Этикетки еще не печатались
+          <div className="p-8 text-center text-muted-foreground flex flex-col items-center gap-4">
+            <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+              <HistoryIcon className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <p>Этикетки еще не печатались</p>
           </div>
         ) : (
           <Table>
@@ -83,23 +86,25 @@ export function RecentLabels({ labels, onReprint, onDelete }: RecentLabelsProps)
                   <TableCell>{formatDate(label.expiryDate)}</TableCell>
                   <TableCell>{getStatusBadge(label.expiryDate)}</TableCell>
                   <TableCell>{formatDate(label.printedAt)}</TableCell>
-                  <TableCell className="text-right space-x-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => onReprint(label)}
-                    >
-                      <PrinterIcon className="h-3 w-3 mr-1" />
-                      Перепечатать
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => onDelete(label.id)}
-                    >
-                      <TrashIcon className="h-3 w-3" />
-                    </Button>
-                  </TableCell>
+                   <TableCell className="text-right space-x-2">
+                     <Button
+                       size="sm"
+                       variant="outline"
+                       onClick={() => onReprint(label)}
+                       className="hover:bg-primary/10 hover:text-primary hover:border-primary transition-all"
+                     >
+                       <PrinterIcon className="h-4 w-4 mr-2" />
+                       Перепечатать
+                     </Button>
+                     <Button
+                       size="sm"
+                       variant="outline"
+                       onClick={() => onDelete(label.id)}
+                       className="hover:bg-destructive/10 hover:text-destructive hover:border-destructive transition-all"
+                     >
+                       <TrashIcon className="h-4 w-4" />
+                     </Button>
+                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
