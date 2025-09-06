@@ -51,20 +51,23 @@ export function RecentLabels({ labels, onReprint, onDelete }: RecentLabelsProps)
   };
 
   return (
-    <Card className="w-full card-gradient fade-in border-0">
-      <CardHeader className="bg-accent/50 border-b border-accent">
-        <CardTitle className="flex items-center gap-3 text-lg font-semibold text-primary">
-          <HistoryIcon className="h-6 w-6" />
+    <Card className="w-full card-gradient fade-in">
+      <CardHeader className="glass-effect relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary-glow/10"></div>
+        <CardTitle className="flex items-center gap-3 text-lg font-semibold relative z-10">
+          <div className="p-2 rounded-lg bg-primary/20 glass-effect">
+            <HistoryIcon className="h-5 w-5 text-primary" />
+          </div>
           Недавно напечатанные этикетки
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         {labels.length === 0 ? (
-          <div className="p-8 text-center text-muted-foreground flex flex-col items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-              <HistoryIcon className="h-8 w-8 text-muted-foreground" />
+          <div className="p-8 text-center flex flex-col items-center gap-6">
+            <div className="w-20 h-20 rounded-2xl surface-tech flex items-center justify-center pulse-glow">
+              <HistoryIcon className="h-10 w-10 text-primary" />
             </div>
-            <p>Этикетки еще не печатались</p>
+            <p className="text-foreground/70">Этикетки еще не печатались</p>
           </div>
         ) : (
           <Table>

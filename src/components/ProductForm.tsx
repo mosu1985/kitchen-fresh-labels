@@ -66,10 +66,13 @@ export function ProductForm({ onPrint }: ProductFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-md card-gradient fade-in border-0">
-      <CardHeader className="btn-primary-gradient text-primary-foreground rounded-t-xl">
-        <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-          <Package2Icon className="h-6 w-6" />
+    <Card className="w-full max-w-md card-gradient fade-in">
+      <CardHeader className="glass-effect rounded-t-xl relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-glow/20"></div>
+        <CardTitle className="flex items-center gap-3 text-lg font-semibold relative z-10">
+          <div className="p-2 rounded-lg bg-primary/20 glass-effect">
+            <Package2Icon className="h-5 w-5 text-primary" />
+          </div>
           Создание этикетки
         </CardTitle>
       </CardHeader>
@@ -114,24 +117,27 @@ export function ProductForm({ onPrint }: ProductFormProps) {
         </div>
 
         {selectedCategory && (
-          <div className="bg-accent/50 p-4 rounded-xl border border-accent space-y-3 slide-up">
-            <div className="flex items-center gap-2 text-sm">
-              <span className="font-semibold text-primary">Срок годности:</span> 
-              <span className="px-2 py-1 bg-success/10 text-success rounded-full text-xs font-medium">
-                {getSelectedCategory()?.shelfLife} дней
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="font-semibold text-primary">Температура:</span> 
-              <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                {getSelectedCategory()?.temp}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="font-semibold text-primary">Годен до:</span> 
-              <span className="px-2 py-1 bg-warning/10 text-warning rounded-full text-xs font-medium">
-                {formatDate(calculateExpiryDate(productionDate, getSelectedCategory()?.shelfLife || 0).toISOString().split('T')[0])}
-              </span>
+          <div className="surface-tech p-5 rounded-xl space-y-4 slide-up relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+            <div className="relative z-10 space-y-3">
+              <div className="flex items-center justify-between p-3 glass-effect rounded-lg">
+                <span className="font-medium text-foreground">Срок годности:</span> 
+                <span className="px-3 py-1.5 bg-success/20 text-success rounded-full text-sm font-semibold border border-success/30">
+                  {getSelectedCategory()?.shelfLife} дней
+                </span>
+              </div>
+              <div className="flex items-center justify-between p-3 glass-effect rounded-lg">
+                <span className="font-medium text-foreground">Температура:</span> 
+                <span className="px-3 py-1.5 bg-primary/20 text-primary rounded-full text-sm font-semibold border border-primary/30">
+                  {getSelectedCategory()?.temp}
+                </span>
+              </div>
+              <div className="flex items-center justify-between p-3 glass-effect rounded-lg">
+                <span className="font-medium text-foreground">Годен до:</span> 
+                <span className="px-3 py-1.5 bg-warning/20 text-warning rounded-full text-sm font-semibold border border-warning/30">
+                  {formatDate(calculateExpiryDate(productionDate, getSelectedCategory()?.shelfLife || 0).toISOString().split('T')[0])}
+                </span>
+              </div>
             </div>
           </div>
         )}

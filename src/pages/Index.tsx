@@ -64,17 +64,28 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="btn-primary-gradient text-primary-foreground shadow-elegant relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
-        <div className="container mx-auto px-6 py-8 relative">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
-              <ChefHatIcon className="h-10 w-10" />
+      {/* Modern Tech Header */}
+      <header className="relative overflow-hidden glass-effect border-b border-primary/20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary-glow/5 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_hsl(var(--primary))_0%,_transparent_50%)] opacity-10"></div>
+        <div className="container mx-auto px-6 py-12 relative z-10">
+          <div className="flex items-center gap-6">
+            <div className="p-4 surface-tech rounded-2xl">
+              <ChefHatIcon className="h-12 w-12 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Система печати этикеток</h1>
-              <p className="text-primary-foreground/90 text-lg mt-1">Управление сроками годности для кухни ресторана</p>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent mb-2">
+                EcoLabel Pro
+              </h1>
+              <p className="text-foreground/70 text-xl">Умная система печати этикеток для экологичной кухни</p>
+              <div className="flex gap-3 mt-3">
+                <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium glass-effect">
+                  Эко-технологии
+                </span>
+                <span className="px-3 py-1 bg-success/20 text-success rounded-full text-sm font-medium glass-effect">
+                  Smart Kitchen
+                </span>
+              </div>
             </div>
           </div>
         </div>
